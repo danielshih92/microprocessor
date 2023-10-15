@@ -1,0 +1,326 @@
+A51 MACRO ASSEMBLER  CODE_HARD                                                            10/14/2023 20:30:41 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\code_hard.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE code_hard.A51 SET(SMALL) DEBUG PRINT(.\Listings\code_hard.lst) OBJECT(.
+                      \Objects\code_hard.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+                       4     
+                       5     
+                       6     
+                       7     
+                       8     
+                       9     
+                      10     
+                      11     
+                      12     
+                      13     
+                      14     
+                      15     
+                      16     
+                      17     
+                      18     
+                      19     
+                      20     
+                      21     
+                      22     
+                      23     
+                      24     
+                      25     
+                      26     
+                      27     
+                      28     
+                      29     
+                      30     
+                      31     
+                      32     
+                      33     
+                      34     
+                      35     
+                      36     
+                      37     
+                      38     
+                      39     
+                      40     
+                      41     
+                      42     
+                      43     
+                      44     
+                      45     
+                      46     
+                      47     
+                      48     
+                      49     
+                      50     
+                      51     
+                      52     
+                      53     
+                      54     
+                      55     
+                      56     
+                      57     
+A51 MACRO ASSEMBLER  CODE_HARD                                                            10/14/2023 20:30:41 PAGE     2
+
+                      58     
+                      59     
+                      60     
+                      61     
+                      62     
+                      63     
+                      64     
+                      65     
+                      66     
+                      67     
+                      68     
+                      69     
+                      70     
+                      71     
+                      72     
+                      73     
+                      74     
+                      75     
+                      76     
+                      77     
+                      78     
+                      79     
+                      80     
+                      81     
+                      82     
+                      83     
+                      84     
+                      85     
+                      86     
+                      87     
+                      88     
+                      89     
+                      90     
+                      91     
+                      92     
+                      93     
+                      94     
+                      95     
+                      96     
+                      97     
+                      98     
+                      99     
+                     100     
+                     101     
+                     102     
+                     103     
+                     104     
+                     105     
+                     106     
+                     107     
+                     108     
+                     109     
+                     110     
+                     111     
+                     112     
+                     113     
+                     114     
+                     115     
+                     116     
+                     117     
+                     118     
+                     119     
+                     120     
+                     121     
+                     122     
+                     123                
+A51 MACRO ASSEMBLER  CODE_HARD                                                            10/14/2023 20:30:41 PAGE     3
+
+                     124                
+                     125                
+                     126                
+                     127     
+                     128     
+                     129     
+                     130     
+                     131     
+                     132     
+                     133     
+                     134     
+                     135     
+                     136     
+                     137     
+                     138     
+                     139     
+                     140     
+                     141     
+                     142     
+                     143     
+                     144     
+                     145     
+                     146     
+                     147     
+                     148     
+                     149     
+                     150     
+                     151     
+                     152     
+                     153     
+                     154     
+                     155     
+                     156     
+                     157     
+                     158     
+                     159     
+                     160     
+                     161     
+                     162     
+                     163     
+                     164     
+                     165     
+                     166     
+                     167     
+                     168     
+                     169     
+                     170     
+                     171     
+                     172     
+                     173     
+                     174     
+                     175     
+                     176     
+                     177     
+                     178     
+                     179     
+                     180     
+                     181     
+                     182     
+                     183     
+                     184     
+                     185     
+                     186     
+                     187     
+                     188     
+                     189     
+A51 MACRO ASSEMBLER  CODE_HARD                                                            10/14/2023 20:30:41 PAGE     4
+
+                     190     
+                     191     
+                     192     
+                     193     
+                     194     
+                     195     
+                     196     
+                     197     
+                     198     
+                     199     
+                     200     
+                     201     
+                     202     
+                     203     
+                     204     
+                     205     
+                     206     
+                     207     
+                     208     
+                     209     
+                     210     
+                     211     
+                     212     
+                     213     
+                     214     
+                     215     
+                     216     
+                     217     
+                     218     
+                     219     
+                     220     
+                     221     
+                     222     
+                     223     
+                     224     
+                     225     
+                     226     
+                     227     
+                     228     
+                     229     
+                     230     
+                     231     
+                     232     
+                     233     
+                     234     
+                     235     
+                     236     
+                     237     
+                     238     
+                     239     
+                     240     
+                     241     
+                     242     
+                     243     
+                     244     
+                     245     
+                     246     
+                     247     
+                     248     
+                     249     
+                     250     
+                     251     
+                     252     
+                     253     
+                     254     
+                     255     
+A51 MACRO ASSEMBLER  CODE_HARD                                                            10/14/2023 20:30:41 PAGE     5
+
+                     256     
+                     257     
+                     258     
+                     259     
+                     260                
+0000                 261     ORG 0000h
+0000 802E            262     JMP LOOP ;jump into loop
+0030                 263     ORG 0030h
+0030 758132          264     LOOP: MOV SP, #32h ;SP = #32H
+0033 74FE            265     MOV A, #0xFE ;A = #0xfe
+0035 F5A0            266     MOV P2, A ;P2 = A
+0037 D290            267     SETB P1.0 ;set p1.0 to high
+0039 7808            268     MOV R0, #8D ;set the execution times of marquee
+003B 309002          269     JNB P1.0, MARQUEE ;jump into marquee when p1.0 is low
+003E 80F0            270     JMP LOOP ;infinite loop
+0040 C000            271     MARQUEE: PUSH 00h ;push the value of R0 into stack
+0042 78FA            272     MOV R0, #250D ;set the execution times of DELAY1
+0044 114F            273     CALL DELAY1 ;call DELAY1
+0046 D000            274     POP 00h ;pop out the value of R0 which is pushed in line11
+0048 23              275     RL A ;left rotate
+0049 F5A0            276     MOV P2, A ;set the value of A into P2
+004B D8F3            277     DJNZ R0, MARQUEE ;loop back until MARQUEE execute 8 times
+004D 80E1            278     JMP LOOP ;end of MARQUEE, back to LOOP
+004F C000            279     DELAY1: PUSH 00h ;push the remain times of DELAY1 into stack
+0051 78FA            280     MOV R0, #250D ;set the execution times of DELAY2
+0053 115A            281     CALL DELAY2 ;call DELAY2
+0055 D000            282     POP 00h ;pop the remain times of DELAY1 back to R0
+0057 D8F6            283     DJNZ R0, DELAY1 ;loop until R0 is 0
+0059 22              284     RET ;return to MARQUEE
+005A D8FE            285     DELAY2: DJNZ R0, DELAY2 ;loop until R0 is 0
+005C 22              286     RET ;return to DELAY1
+                     287     END
+A51 MACRO ASSEMBLER  CODE_HARD                                                            10/14/2023 20:30:41 PAGE     6
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY1 . . . . . .  C ADDR   004FH   A   
+DELAY2 . . . . . .  C ADDR   005AH   A   
+LOOP . . . . . . .  C ADDR   0030H   A   
+MARQUEE. . . . . .  C ADDR   0040H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

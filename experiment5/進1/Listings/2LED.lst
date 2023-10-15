@@ -1,0 +1,58 @@
+A51 MACRO ASSEMBLER  2LED                                                                 10/18/2022 18:23:47 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE 2LED.A51 SET(SMALL) DEBUG PRINT(.\Listings\2LED.lst) OBJECT(.\Objects\2
+                      LED.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000h
+0000 802E              2     JMP LOOP ;jump into loop
+0030                   3     ORG 0030h
+0030 758132            4     LOOP: MOV SP, #32h ;SP = #32H
+0033 74FC              5           MOV A, #0xFC ;A = #0xfc
+0035 7800              6               MOV R0,#0;
+0037 F5A0              7           MOV P2, A ;P2 = A
+0039 D290              8           SETB P1.0 ;set push to high
+003B D292              9           SETB P1.2 ;set pop to high 
+                      10     
+003D 8002             11     JMP MARQUEE ;jump into marquee when p1.0 is low
+003F 80EF             12     JMP LOOP ;infinite loop
+0041                  13     MARQUEE:  
+0041 79FA             14             MOV R1, #250D ;set the execution times of DELAY1
+0043 114C             15            CALL DELAY ;call DELAY1
+                      16            
+0045 23               17             RL A ;left rotate
+0046 F5A0             18             MOV P2, A ;set the value of A into P2
+0048                  19                     JNB P1
+*** _________________________________________^
+*** ERROR #A38 IN 19 (2LED.A51, LINE 19): NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+0048 D9F7             20             DJNZ R1, MARQUEE ;loop back until MARQUEE execute 8 times
+004A 80E4             21             JMP LOOP ;end of MARQUEE, back to LOOP
+                      22     
+004C                  23     DELAY:
+                      24     
+                      25     
+                      26     END
+A51 MACRO ASSEMBLER  2LED                                                                 10/18/2022 18:23:47 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   004CH   A   
+LOOP . . . . . . .  C ADDR   0030H   A   
+MARQUEE. . . . . .  C ADDR   0041H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 1 ERROR(S)

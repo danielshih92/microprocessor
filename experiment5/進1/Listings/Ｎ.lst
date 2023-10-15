@@ -1,0 +1,181 @@
+A51 MACRO ASSEMBLER  __                                                                   10/15/2023 00:39:11 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\¢Ü.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE ¢Ü.A51 SET(SMALL) DEBUG PRINT(.\Listings\¢Ü.lst) OBJECT(.\Objects\¢Ü.ob
+                      j) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000h
+0000 802E              2     JMP START 
+0030                   3     ORG 0030h
+0030                   4     START: 
+0030 758132            5               MOV SP, #32h 
+0033 74FC              6           MOV A, #0xFC 
+0035 7F00              7               MOV R7, #0
+0037 F5A0              8           MOV P2, A 
+0039 8000              9           JMP  MARQUEE 
+                      10           
+003B                  11     MARQUEE:  
+003B 1142             12            CALL DELAY
+003D 23               13                AFTER_PUSH:     RL A 
+003E F5A0             14                                                MOV P2, A 
+0040 80F9             15                                                JMP MARQUEE 
+0042                  16     DELAY: 
+0042 7932             17                MOV R1,#50
+0044 7A14             18                D1:MOV R2,#20
+0046 7B96             19                D2:MOV R3,#150
+0048 D290             20                SETB P1.0 
+004A D294             21                SETB P1.4 
+004C 309016           22                CHECK: JNB P1.0,DO_PUSH
+004F 30941A           23            JNB P1.4,DO_POP
+0052 DBF8             24                DJNZ R3,CHECK
+0054 DAF0             25                DJNZ R2,D2
+0056 D9EC             26                DJNZ R1,D1
+0058 22               27            RET
+0059                  28     ONLY_DELAY:
+0059 7C32             29                MOV R4,#50
+005B 7D14             30                D3:MOV R5,#20
+005D 7E64             31                D4:MOV R6,#100
+005F DEFE             32                DJNZ R6,$
+0061 DDFA             33                DJNZ R5,D4
+0063 DCF6             34                DJNZ R4,D3
+0065                  35     DO_PUSH:
+0065 1159             36           CALL ONLY_DELAY
+0067 C0A0             37           PUSH P2
+0069 0F               38               INC R7
+006A 80D1             39               JMP AFTER_PUSH
+006C                  40     DO_POP:
+006C D0A0             41               POP P2
+006E 1159             42               CALL ONLY_DELAY
+0070 DFFA             43               DJNZ R7 ,DO_POP
+                      44     END
+                                     
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  __                                                                   10/15/2023 00:39:11 PAGE     2
+
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  __                                                                   10/15/2023 00:39:11 PAGE     3
+
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                                     
+                             
+                                       
+                                     
+                                     
+                                     
+                                     
+A51 MACRO ASSEMBLER  __                                                                   10/15/2023 00:39:11 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AFTER_PUSH . . . .  C ADDR   003DH   A   
+CHECK. . . . . . .  C ADDR   004CH   A   
+D1 . . . . . . . .  C ADDR   0044H   A   
+D2 . . . . . . . .  C ADDR   0046H   A   
+D3 . . . . . . . .  C ADDR   005BH   A   
+D4 . . . . . . . .  C ADDR   005DH   A   
+DELAY. . . . . . .  C ADDR   0042H   A   
+DO_POP . . . . . .  C ADDR   006CH   A   
+DO_PUSH. . . . . .  C ADDR   0065H   A   
+MARQUEE. . . . . .  C ADDR   003BH   A   
+ONLY_DELAY . . . .  C ADDR   0059H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+START. . . . . . .  C ADDR   0030H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
