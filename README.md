@@ -1,2 +1,3 @@
 # microprocessor
- first load
+ some exercises in the lesson
+ 
