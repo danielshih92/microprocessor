@@ -1,0 +1,180 @@
+A51 MACRO ASSEMBLER  __                                                                   10/18/2023 17:05:56 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\¢Ü.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE ¢Ü.A51 SET(SMALL) DEBUG PRINT(.\Listings\¢Ü.lst) OBJECT(.\Objects\¢Ü.ob
+                      j) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+                       4     
+                       5     
+                       6     
+                       7     
+                       8     
+                       9     
+                      10     
+                      11     
+                      12     
+                      13     
+                      14     
+                      15     
+                      16     
+                      17     
+                      18     
+                      19     
+                      20     
+                      21     
+                      22     
+                      23     
+                      24     
+                      25     
+                      26     
+                      27     
+                      28     
+                      29     
+                      30     
+                      31     
+                      32     
+                      33     
+                      34     
+                      35     
+                      36     
+                      37     
+                      38     
+                      39     
+                      40     
+                      41     
+                      42     
+                      43     
+                      44     
+                      45     
+                      46     
+                      47     
+                      48     
+                      49     
+                      50     
+                      51     
+                      52     
+                      53     
+                      54     
+                      55     
+                      56     
+                      57     
+A51 MACRO ASSEMBLER  __                                                                   10/18/2023 17:05:56 PAGE     2
+
+                      58     
+                      59     
+                      60     
+                      61     
+                      62     
+                      63     
+                      64     
+                      65     
+                      66     
+                      67     
+                      68     
+                      69     
+                      70     
+                      71     
+                      72     
+                      73     
+                      74     
+                      75     
+                      76     
+                      77     
+                      78     
+                      79     
+                      80     
+                      81     
+                      82     
+                      83     
+                      84     
+                      85     
+                      86     
+0000                  87     ORG 0000H
+0000 758130           88     MOV SP, #30H
+0003 74FC             89     MOV A, #11111100B
+0005 7D00             90     MOV R5, #0
+                      91     
+0007 8027             92     JMP RUN0 ;jump into loop
+0030                  93     ORG 0030H
+0030                  94     RUN0:
+0030 7FFA             95                     MOV R7, #250
+0032 7C0A             96                     MOV R4, #10
+0034                  97     RUN:
+0034 7EFA             98                     MOV R6, #250
+0036 F8               99                     MOV R0, A
+0037 F5A0            100                     MOV P2, A
+0039 D290            101                     SETB P1.0
+003B D294            102                     SETB P1.4
+003D 309010          103                     JNB P1.0, PUSH1
+0040                 104     CONT:
+0040 30941F          105                     JNB P1.4, POPALL
+0043 DEFE            106                     DJNZ R6, $
+0045 7EFA            107                     MOV R6, #250
+0047 DEFE            108                     DJNZ R6, $
+0049 DCFE            109                     DJNZ R4, $
+004B DFE7            110                     DJNZ R7, RUN
+004D 23              111                     RL A
+004E 80E0            112                     SJMP RUN0
+0050                 113     PUSH1:
+0050 1159            114                     ACALL DELAY125
+0052 1159            115                     ACALL DELAY125
+0054 C000            116                     PUSH 00H
+0056 0D              117                     INC R5
+0057 80E7            118                     SJMP CONT
+0059                 119     DELAY125:
+0059 7FFA            120                     MOV R7, #250 ; move 50 times into R4
+005B                 121     LOOP1:
+005B 7EFA            122                     MOV R6, #250 ; move 250 times into R3
+005D DEFE            123                     DJNZ R6, $ ; jump to itself R3 times
+A51 MACRO ASSEMBLER  __                                                                   10/18/2023 17:05:56 PAGE     3
+
+005F DFFA            124                     DJNZ R7, LOOP1 ; delay 25ms
+0061 22              125                     RET ; return to main code
+0062                 126     POPALL:
+0062 1159            127                     ACALL DELAY125
+0064 1159            128                     ACALL DELAY125
+0066 1159            129                     ACALL DELAY125
+0068 1159            130                     ACALL DELAY125
+006A D000            131                     POP 00H
+006C E8              132                     MOV A, R0
+006D F5A0            133                     MOV P2, A
+006F DDF1            134                     DJNZ R5, POPALL
+                     135     END
+                                     
+                             
+                                       
+                                     
+                                     
+                                     
+                                     
+A51 MACRO ASSEMBLER  __                                                                   10/18/2023 17:05:56 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CONT . . . . . . .  C ADDR   0040H   A   
+DELAY125 . . . . .  C ADDR   0059H   A   
+LOOP1. . . . . . .  C ADDR   005BH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+POPALL . . . . . .  C ADDR   0062H   A   
+PUSH1. . . . . . .  C ADDR   0050H   A   
+RUN. . . . . . . .  C ADDR   0034H   A   
+RUN0 . . . . . . .  C ADDR   0030H   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

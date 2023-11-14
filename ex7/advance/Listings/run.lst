@@ -1,0 +1,58 @@
+C51 COMPILER V9.60.0.0   RUN                                                               11/01/2022 17:40:58 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE RUN
+OBJECT MODULE PLACED IN .\Objects\run.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE run.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\run.l
+                    -st) TABS(2) OBJECT(.\Objects\run.obj)
+
+line level    source
+
+   1          #include <regx51.h> // include header file for 8051
+   2          //#define TH0_init 0x06 //TH0_init= 256 - 250
+   3          //#define TL0_init 0x06 //TL0_init = 256 - 250
+   4          #define Timer0_int_exe_time 10 //the parameter can be changed
+   5          void delay(int t);
+   6          int counter;
+   7          unsigned char a=0xfe;
+   8          void main(){
+   9   1      TMOD = 0x09; //set timer0 to mode 1(8-bits and auto-reload)
+  10   1      IP = 0x02; //timer0 interrupt has high priority
+  11   1      IE = 0x82; //enable timer0 interrupt
+  12   1      P2 = 0xfe;  
+  13   1      TL0 = (65536-50000)%256;
+  14   1      TH0 = (65536-50000)/256; //set TH0 & TL0
+  15   1      TCON = 0x10; //enable timer0
+  16   1      while(1){
+  17   2      P2=a;
+  18   2      }
+  19   1      }
+  20          void timer0_interrupt(void) interrupt 1 // ‘interrupt 1’ is int vector of INT0
+  21          {
+  22   1      counter++;
+  23   1      if (counter == Timer0_int_exe_time) //250clock cycle * 2000 = 0.5 second
+  24   1      {
+  25   2      if(P2!=0x7f){
+  26   3      a =a<<1; //inverse P2.0 
+  27   3      a =a+1;
+  28   3      }
+  29   2      else{
+  30   3      a =a<<1;
+  31   3      }
+  32   2      counter = 0;
+  33   2      }
+  34   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     85    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

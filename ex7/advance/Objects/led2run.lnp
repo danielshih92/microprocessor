@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\run.obj" 
+TO ".\Objects\led2run" 
+PRINT(".\Listings\led2run.m51") RAMSIZE(256) 
