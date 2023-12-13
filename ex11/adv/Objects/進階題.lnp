@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\進階題.obj" 
+TO ".\Objects\進階題" 
+PRINT(".\Listings\進階題.m51") RAMSIZE(256) 

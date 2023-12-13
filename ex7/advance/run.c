@@ -8,8 +8,8 @@ unsigned char a=0xfe;
 void main(){
 TMOD = 0x09; //set timer0 to mode 1(8-bits and auto-reload)
 IP = 0x02; //timer0 interrupt has high priority
-IE = 0x82; //enable timer0 interrupt
-P2 = 0xfe;	
+IE = 0x82; //enable timer0 interrupt 1000 0010 
+P2 = 0xfe;	//1111 1110
 TL0 = (65536-50000)%256;
 TH0 = (65536-50000)/256; //set TH0 & TL0
 TCON = 0x10; //enable timer0

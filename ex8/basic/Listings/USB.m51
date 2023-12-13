@@ -1,0 +1,113 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/29/2022  15:33:12  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\usb.obj TO .\Objects\USB PRINT (.\Listings\USB.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\usb.obj (USB)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\USB (USB)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?USB
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     0020H     UNIT         ?PR?INIT_UART1?USB
+            CODE    0820H     000FH     UNIT         ?PR?INIT_UART?USB
+            CODE    082FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    083BH     0005H     UNIT         ?PR?MAIN?USB
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\USB (USB)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?USB
+
+?PR?MAIN?USB
+  +--> ?PR?INIT_UART?USB
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\USB (USB)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        USB
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0800H         PUBLIC        init_uart1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2022  15:33:12  PAGE 2
+
+
+  D:00A8H         PUBLIC        IE
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  D:0008H         PUBLIC        recivevalue
+  C:083BH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  C:0820H         PUBLIC        init_uart
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          MAIN
+  C:083BH         LINE#         5
+  C:083BH         LINE#         6
+  C:083BH         LINE#         7
+  C:083EH         LINE#         8
+  -------         ENDPROC       MAIN
+  -------         PROC          INIT_UART
+  C:0820H         LINE#         11
+  C:0820H         LINE#         12
+  C:0820H         LINE#         13
+  C:0823H         LINE#         14
+  C:0826H         LINE#         15
+  C:0829H         LINE#         16
+  C:082BH         LINE#         17
+  C:082EH         LINE#         18
+  -------         ENDPROC       INIT_UART
+  -------         PROC          INIT_UART1
+  C:0800H         LINE#         20
+  C:0804H         LINE#         22
+  C:0807H         LINE#         23
+  C:0809H         LINE#         24
+  C:080CH         LINE#         25
+  C:080FH         LINE#         26
+  C:0814H         LINE#         27
+  C:0814H         LINE#         28
+  C:0816H         LINE#         29
+  C:0819H         LINE#         30
+  C:081BH         LINE#         31
+  C:081BH         LINE#         32
+  -------         ENDPROC       INIT_UART1
+  -------         ENDMOD        USB
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0037H BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=10.0 xdata=0 code=70
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

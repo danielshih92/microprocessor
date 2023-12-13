@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\roll.obj" 
+TO ".\Objects\roll" 
+PRINT(".\Listings\roll.m51") RAMSIZE(256) 

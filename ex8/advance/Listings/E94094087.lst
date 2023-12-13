@@ -1,0 +1,122 @@
+C51 COMPILER V9.60.7.0   E94094087                                                         11/22/2023 16:40:54 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE E94094087
+OBJECT MODULE PLACED IN .\Objects\E94094087.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE E94094087.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\E94094087.lst) TABS(2) OBJECT(.\Objects\E94094087.obj)
+
+line level    source
+
+   1          #include <regx51.h>
+   2          #include <stdio.h>
+   3          #define LED P2
+   4           void init_uart();
+   5           
+   6           bit receive_full=1;
+   7           bit transmit_flag=1;
+   8           char cbindex = 0;
+   9           char rxbuf[9];
+  10           int n;
+  11           char stnum[]="e14104064";
+  12           char correct[]="\r\nCorrect";
+  13           char wrong[]="\r\nWrong";
+  14           int rn[]={0x0d,0x0a};
+  15           
+  16           void main( )
+  17           {
+  18   1        init_uart();
+  19   1        while(1)
+  20   1        {
+  21   2          if(receive_full==1)
+  22   2          {
+  23   3            bit check_flag = 0;
+  24   3            receive_full = 0;
+  25   3            for(n=0;n<9;n++)
+  26   3            {
+  27   4                if(stnum[n]!=rxbuf[n])
+  28   4                {
+  29   5                  check_flag=1;
+  30   5                  break;
+  31   5                }
+  32   4            }
+  33   3            if(check_flag==0)
+  34   3            {
+  35   4                for(n=0;n<9;n++)
+  36   4                {
+  37   5                    while(!transmit_flag);
+  38   5                
+  39   5                    transmit_flag=0;
+  40   5                    SBUF=correct[n];
+  41   5                }
+  42   4                for(n=0;n<2;n++)
+  43   4                {
+  44   5                    while(!transmit_flag);
+  45   5                
+  46   5                    transmit_flag=0;
+  47   5                    SBUF=rn[n];
+  48   5                }
+  49   4            }
+  50   3            else
+  51   3            {
+  52   4              for(n=0;n<7;n++)
+  53   4                {
+  54   5                    while(!transmit_flag);
+C51 COMPILER V9.60.7.0   E94094087                                                         11/22/2023 16:40:54 PAGE 2   
+
+  55   5                
+  56   5                    transmit_flag=0;
+  57   5                    SBUF=wrong[n];
+  58   5                }
+  59   4                for(n=0;n<2;n++)
+  60   4                {
+  61   5                    while(!transmit_flag);
+  62   5                
+  63   5                    transmit_flag=0;
+  64   5                    SBUF=rn[n];
+  65   5                }
+  66   4            }
+  67   3          }
+  68   2        }
+  69   1       }
+  70           void init_uart(void)
+  71           { 
+  72   1        SCON=0x50; 
+  73   1        TMOD=0x20; 
+  74   1        TH1=0xe6; 
+  75   1        TR1=1; 
+  76   1        IE=0x90;
+  77   1       }
+  78           void UART_Isr(void) interrupt 4
+  79           {
+  80   1          if(RI==1)
+  81   1          {
+  82   2            RI=0;
+  83   2            rxbuf[cbindex++]=SBUF;
+  84   2            LED=rxbuf[cbindex-1];
+  85   2            cbindex=cbindex%0x09;
+  86   2            if(cbindex==0)
+  87   2            {
+  88   3                receive_full=1;
+  89   3            }
+  90   2          }
+  91   1          else
+  92   1          {
+  93   2              TI=0;
+  94   2              transmit_flag=1;
+  95   2          }
+  96   1        }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    324    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     44    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

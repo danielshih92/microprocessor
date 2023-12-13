@@ -1,0 +1,66 @@
+C51 COMPILER V9.60.7.0   ____                                                              12/12/2023 23:11:45 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE ____
+OBJECT MODULE PLACED IN .\Objects\基礎.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 基礎.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\基礎
+                    -.lst) TABS(2) OBJECT(.\Objects\基礎.obj)
+
+line level    source
+
+   1          #include<regx51.h>
+   2          void delay(int);
+   3          void turn();
+   4          
+   5          code char one_phase[] = {0x04,0x08,0x01,0x02};
+   6          code char two_phase[] = {0x0c,0x06,0x03,0x09};
+   7          int dir , delay_time;
+   8          
+   9          void main ()
+  10          {
+  11   1      delay_time = 3000;
+  12   1      dir = 1;
+  13   1      while(1)
+  14   1      {
+  15   2      turn();
+  16   2      }
+  17   1      }
+  18          
+  19          void turn()
+  20          {
+  21   1      int x;
+  22   1      if(dir == 1) //one phase, turn right
+  23   1      {
+  24   2       for(x=0;x<4;x++)
+  25   2       {
+  26   3         P1=one_phase[x]; 
+  27   3         delay(delay_time);
+  28   3       }}
+  29   1      else //two phase,turn left
+  30   1      {
+  31   2         for(x=0;x<4;x++)
+  32   2          {
+  33   3            P1=two_phase[x];
+  34   3            delay(delay_time);
+  35   3          }
+  36   2        }
+  37   1      }
+  38          
+  39          void delay(int t)
+  40          {
+  41   1        while(t--);
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    119    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

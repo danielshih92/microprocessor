@@ -1,0 +1,224 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    11/22/2023  16:40:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\E94094087.obj TO .\Objects\E94094087 PRINT (.\Listings\E940
+>> 94087.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\E94094087.obj (E94094087)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SCDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\E94094087 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0018H                  *** GAP ***
+            BIT     0020H.0   0000H.2   UNIT         ?BI?E94094087
+            BIT     0020H.2   0000H.1   UNIT         _BIT_GROUP_
+                    0020H.3   0000H.5                *** GAP ***
+            DATA    0021H     002CH     UNIT         ?DT?E94094087
+            IDATA   004DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     00CFH     UNIT         ?PR?MAIN?E94094087
+            CODE    08CFH     008CH     UNIT         ?C_C51STARTUP
+            CODE    095BH     0066H     UNIT         ?PR?UART_ISR?E94094087
+            CODE    09C1H     0030H     UNIT         ?C_INITSEG
+            CODE    09F1H     0022H     UNIT         ?C?LIB_CODE
+            CODE    0A13H     000FH     UNIT         ?PR?INIT_UART?E94094087
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\E94094087 (?C_STARTUP)
+
+
+SEGMENT                            BIT_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?E94094087
+  +--> ?C_INITSEG
+
+?PR?MAIN?E94094087              0020H.2  0000H.1
+  +--> ?PR?INIT_UART?E94094087
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/22/2023  16:40:54  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\E94094087 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:08CFH         SEGMENT       ?C_C51STARTUP
+  I:004DH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:08D2H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:08CFH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:08CFH         LINE#         133
+  C:08D1H         LINE#         134
+  C:08D2H         LINE#         135
+  C:08D3H         LINE#         136
+  C:08D5H         LINE#         185
+  C:08D8H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        E94094087
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00A8H         PUBLIC        IE
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:0800H         PUBLIC        main
+  D:0021H         PUBLIC        rxbuf
+  D:002AH         PUBLIC        wrong
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0032H         PUBLIC        stnum
+  C:095BH         PUBLIC        UART_Isr
+  D:008DH         PUBLIC        TH1
+  C:0A13H         PUBLIC        init_uart
+  B:0088H.6       PUBLIC        TR1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/22/2023  16:40:54  PAGE 3
+
+
+  D:003CH         PUBLIC        rn
+  D:0040H         PUBLIC        cbindex
+  D:0041H         PUBLIC        n
+  B:0020H.0       PUBLIC        transmit_flag
+  D:0043H         PUBLIC        correct
+  B:0020H.1       PUBLIC        receive_full
+  -------         PROC          MAIN
+  -------         DO            
+  B:0020H.2       SYMBOL        check_flag
+  -------         ENDDO         
+  C:0800H         LINE#         16
+  C:0800H         LINE#         17
+  C:0800H         LINE#         18
+  C:0803H         LINE#         19
+  C:0803H         LINE#         20
+  C:0803H         LINE#         21
+  C:0806H         LINE#         22
+  C:0806H         LINE#         23
+  C:0808H         LINE#         24
+  C:080AH         LINE#         25
+  C:080FH         LINE#         26
+  C:080FH         LINE#         27
+  C:081FH         LINE#         28
+  C:081FH         LINE#         29
+  C:0821H         LINE#         30
+  C:0823H         LINE#         31
+  C:0823H         LINE#         32
+  C:0831H         LINE#         33
+  C:0834H         LINE#         34
+  C:0834H         LINE#         35
+  C:0839H         LINE#         36
+  C:0839H         LINE#         37
+  C:083CH         LINE#         39
+  C:083EH         LINE#         40
+  C:0846H         LINE#         41
+  C:0854H         LINE#         42
+  C:0866H         LINE#         43
+  C:0866H         LINE#         44
+  C:0869H         LINE#         46
+  C:086BH         LINE#         47
+  C:0876H         LINE#         48
+  C:0880H         LINE#         49
+  C:0880H         LINE#         51
+  C:0880H         LINE#         52
+  C:0885H         LINE#         53
+  C:0885H         LINE#         54
+  C:0888H         LINE#         56
+  C:088AH         LINE#         57
+  C:0892H         LINE#         58
+  C:08A0H         LINE#         59
+  C:08B5H         LINE#         60
+  C:08B5H         LINE#         61
+  C:08B8H         LINE#         63
+  C:08BAH         LINE#         64
+  C:08C5H         LINE#         65
+  -------         ENDPROC       MAIN
+  -------         PROC          INIT_UART
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/22/2023  16:40:54  PAGE 4
+
+
+  C:0A13H         LINE#         70
+  C:0A13H         LINE#         71
+  C:0A13H         LINE#         72
+  C:0A16H         LINE#         73
+  C:0A19H         LINE#         74
+  C:0A1CH         LINE#         75
+  C:0A1EH         LINE#         76
+  C:0A21H         LINE#         77
+  -------         ENDPROC       INIT_UART
+  -------         PROC          UART_ISR
+  C:095BH         LINE#         78
+  C:0978H         LINE#         80
+  C:097BH         LINE#         81
+  C:097BH         LINE#         82
+  C:097DH         LINE#         83
+  C:0987H         LINE#         84
+  C:098FH         LINE#         85
+  C:099AH         LINE#         86
+  C:099EH         LINE#         87
+  C:099EH         LINE#         88
+  C:09A0H         LINE#         89
+  C:09A0H         LINE#         90
+  C:09A2H         LINE#         92
+  C:09A2H         LINE#         93
+  C:09A4H         LINE#         94
+  C:09A6H         LINE#         95
+  C:09A6H         LINE#         96
+  -------         ENDPROC       UART_ISR
+  -------         ENDMOD        E94094087
+
+  -------         MODULE        ?C?SCDIV
+  C:09F1H         PUBLIC        ?C?SCDIV
+  -------         ENDMOD        ?C?SCDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0185H BYTE (18%) *
+******************************************************************************
+
+Program Size: data=53.3 xdata=0 code=552
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

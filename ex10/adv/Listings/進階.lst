@@ -1,0 +1,83 @@
+C51 COMPILER V9.60.7.0   _I__                                                              12/06/2023 16:38:32 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE _I__
+OBJECT MODULE PLACED IN .\Objects\進階.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 進階.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\進階
+                    -.lst) TABS(2) OBJECT(.\Objects\進階.obj)
+
+line level    source
+
+   1          #include <regx51.h>
+   2          void print_msg(char *);
+   3          void write(char, int);
+   4          void delay(unsigned int);
+   5          
+   6          void main()
+   7          {
+   8   1      write(0x38, 0);
+   9   1      write(0x0F, 0);
+  10   1      write(0x06, 0);
+  11   1      write(0x01, 0);
+  12   1      write(0x80, 0); //DD line1
+  13   1      print_msg("E14104064");
+  14   1      
+  15   1      
+  16   1      write(0x40, 0);//row1
+  17   1      write(0x00, 1);
+  18   1      write(0x41, 0);
+  19   1      write(0x0a, 1);
+  20   1      write(0x42, 0);
+  21   1      write(0x1f, 1);
+  22   1      write(0x43, 0);
+  23   1      write(0x1f, 1);
+  24   1      write(0x44, 0);
+  25   1      write(0x0e, 1);
+  26   1      write(0x45, 0);
+  27   1      write(0x04, 1);
+  28   1      write(0x46, 0);
+  29   1      write(0x00, 1);
+  30   1      write(0x47, 0);
+  31   1      write(0x00, 1);
+  32   1      
+  33   1      write(0xC0, 0);//line2
+  34   1      write(0x00, 1);
+  35   1      
+  36   1      while (1);
+  37   1      }
+  38          
+  39          void print_msg(char *msg)
+  40          {
+  41   1        for(;*msg!='\0';msg++)
+  42   1             write(*msg,1);
+  43   1      }
+  44          
+  45          void write(char cmd,int rs_value)
+  46          {
+  47   1        P1=cmd;
+  48   1        P3_0=rs_value;
+  49   1        P3_1=1;
+  50   1        delay(100);
+  51   1        P3_1=0;
+  52   1      }
+  53          
+  54          void delay(unsigned int i)
+C51 COMPILER V9.60.7.0   _I__                                                              12/06/2023 16:38:32 PAGE 2   
+
+  55          {
+  56   1        while(i--);
+  57   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    271    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
