@@ -12,7 +12,7 @@ write(0x01, 0);
 write(0x80, 0); //DD line1
 print_msg("E14104064");
 
-
+// CGRAM settings
 write(0x40, 0);//row1 , get the address
 write(0x00, 1);//write the designed pattern into CGRAM for first row
 write(0x41, 0);//row2
@@ -30,8 +30,8 @@ write(0x00, 1);
 write(0x47, 0);//cursor
 write(0x00, 1);
 
-write(0xC0, 0);//line2
-write(0x00, 1);
+write(0xC0, 0);//line2  write into DDRAM// write command to lcd
+write(0x00, 1);// display 
 
 while (1);
 }

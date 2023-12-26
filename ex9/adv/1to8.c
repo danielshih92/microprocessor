@@ -2,7 +2,7 @@
 
 void main( )
 {
-IT0 = 0; //enable a low-level signal on external interrupt
+IT0 = 0; //enable a low-level signal on external interrup t
 EX0 = 1; //enable INT0
 EA = 1; //enable interrupt
 P3_4 = 0; //WR=0,clean the data
