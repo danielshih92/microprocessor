@@ -1,0 +1,1 @@
+"all.c" OPTIMIZE (8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\all.lst) TABS (2) OBJECT(.\Objects\all.obj)

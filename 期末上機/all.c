@@ -4,10 +4,13 @@
 void print_msg(char[]);
 void write(char, int); 
 void delay(unsigned int);
+void num2();
+void num3();
+void num4();
 int itr0 = 0; // interrupt 0 counter
 int itr1 = 0; // interrupt 1 counter
 int counter = 0; // timer counter
-char roll_msg[] = "Final exam      ";
+char roll_msg[] = "I love embedded system.";
 
 void main() {
     TMOD = 0x02;
@@ -21,75 +24,112 @@ void main() {
     EX0=1; // open INT0
     EX1=1; //open INT1
     EA=1;
+    write(0x08, 0); // display off
+    delay(60000);
+    delay(60000);
     write(0x38, 0); // use 2 lines and 5x7 matrix
     write(0x0F, 0); // LCD ON, cursor ON, cursor blinking ON
     write(0x06, 0); // increment cursor
     write(0x01, 0); // clear screen
-    while(itr0==0 && itr1==0){
-        write(0x01, 0); // clear screen
-        write(0x80, 0); // DDRAM 1st row 1st column (00H)
-        if(P0 < 81){
-            print_msg("LOW");
+    while(1){
+        if(P0 <= 70){
+            write(0x01, 0); // clear screen
+            P2_0 = 0;
+            P2_1 = 1;
+            P2_2 = 1;
+            num2();
         }
-        else if(P0 < 171){
-            print_msg("MIDDLE");
+        else if(P0 <= 165){
+            write(0x01, 0); // clear screen
+            P2_0 = 1;
+            P2_1 = 0;
+            P2_2 = 1;
+            num3();
         }
-        else if(P0 < 256){
-            print_msg("HIGH");
+        else if(P0 <= 255){
+            write(0x01, 0); // clear screen
+            P2_0 = 1;
+            P2_1 = 1;
+            P2_2 = 0;
+            num4();
         }
-        write(0xC0, 0); // DDRAM 2nd row 1st column (40H)
-        if(P0 < 20){
-            print_msg("=");
-        }
-        else if(P0 < 40){
-            print_msg("==");
-        }
-        else if(P0 < 60){
-            print_msg("===");
-        }
-        else if(P0 < 80){
-            print_msg("====");
-        }
-        else if(P0 < 120){
-            print_msg("=====");
-        }
-        else if(P0 < 140){
-            print_msg("======");
-        }
-        else if(P0 < 160){
-            print_msg("=======");
-        }
-        else if(P0 < 180){
-            print_msg("========");
-        }
-        else if(P0 < 200){
-            print_msg("=========");
-        }
-        else if(P0 < 220){
-            print_msg("==========");
-        }
-        else if(P0 < 240){
-            print_msg("===========");
-        }
-        else if(P0 < 256){
-            print_msg("============");
-        }
-        delay(16383);
+		delay(16383);
     }
-    while(1);
 }
 
 void int_0(void) interrupt 0 {
-    if(itr0 == 0){
-        write(0x08, 0);
-        P2_0=0;
-    }
-    else if(itr0 == 1){
-        write(0x0F, 0);
-        write(0x01, 0);
-        write(0x80, 0);
-        print_msg("E14104064");
+    delay(65535);
+}
 
+void int_1(void) interrupt 2 {
+    write(0x01, 0);
+    write(0x80, 0);
+    print_msg("Best1");
+    write(0xC0, 0);
+    print_msg("Worst2");
+    delay(65535);
+		delay(65535);
+		delay(65535);
+}
+
+
+void timer_0(void) interrupt 1 {
+    delay(65535);
+}
+
+
+
+void print_msg(char msg[]) {
+    int i;
+    for (i=0; i<strlen(msg); i++) // for every character
+        write(msg[i], 1); // monitor displays character
+}
+
+void write(char cmd, int rs_value) {
+    P1 = cmd; // P1=cmd
+    P3_6 = rs_value; // RS=rs (1or0)
+    P3_7 = 1; // ENABLE high
+    delay(100);
+    P3_7 = 0; // ENABLE low
+}
+
+void delay(unsigned int i) {
+    while (i--); 
+}
+
+void num2(){
+        write(0x80, 0);//print position
+        print_msg("0%");
+		write(0xC0, 0);//print position
+        print_msg("=>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("==>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("===>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("====>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("=====>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("======>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("=======>");
+        delay(65535);
+        write(0xC0, 0);//print position
+        print_msg("========>");
+        delay(65535);
+}
+void num3(){
+        write(0x80, 0);//print position
+        print_msg("E14104064");
+        write(0xC0, 0);//print position
+        print_msg("Final exam");
         //skull
         write(0x40,0); //RAM POSITION
         write(0x00,1);
@@ -115,72 +155,79 @@ void int_0(void) interrupt 0 {
         write(0x00,1);
         write(0xCF,0);//PRINT POSITION
         write(0x01,1);
+}
 
-        P2_1=0;
-    }
-    else if(itr0 == 2){
-        P2_2=0;
-        write(0x01, 0);
-        write(0x80, 0);
-        print_msg("Best1");
-        write(0xC0, 0);
-        print_msg("Worst2");
-    }
-
-    itr0++;
+void num4(){
+    write(0x80, 0);//print position
+    print_msg("I love embedded ");
     delay(65535);
-}
-
-void int_1(void) interrupt 2 {
-    if(itr1 == 0){
-        write(0x01, 0);
-        write(0x80, 0);
-        print_msg("Final exam      ");
-    }
-    else if(itr1 == 1){
-        TR0=1;
-        P2_0=0;
-    }
-    else if(itr1 == 2){
-        TR0=0; // close timer 0
-				TF0=0; // set the flag to 0
-    }
-
-    itr1++;
+    write(0x80, 0);//print position
+    print_msg(" love embedded s"); 
     delay(65535);
-}
-
-
-void timer_0(void) interrupt 1 {
-    int k;
-    char temp;
-    P2_1=0;
-    P2_2=0;
-    write(0x01, 0);
-    write(0x80, 0);
-    print_msg(roll_msg);
-    temp = roll_msg[15];
-    for(k=15; k>0; k--){
-        roll_msg[k] = roll_msg[k-1];
-    }
-    roll_msg[0] = temp;
+    write(0x80, 0);//print position
+    print_msg("love embedded sy");
     delay(65535);
-}
-
-void print_msg(char msg[]) {
-    int i;
-    for (i=0; i<strlen(msg); i++) // for every character
-        write(msg[i], 1); // monitor displays character
-}
-
-void write(char cmd, int rs_value) {
-    P1 = cmd; // P1=cmd
-    P3_6 = rs_value; // RS=rs (1or0)
-    P3_7 = 1; // ENABLE high
-    delay(100);
-    P3_7 = 0; // ENABLE low
-}
-
-void delay(unsigned int i) {
-    while (i--); 
+    write(0x80, 0);//print position
+    print_msg("ove embedded sys");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("ve embedded syst");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("e embedded syste");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg(" embedded system");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("embedded system.");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("mbedded system. ");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("bedded system. I");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("edded system. I ");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("dded system. I l");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("ded system. I lo");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("ed system. I lov");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("d system. I love");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg(" system. I love ");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("system. I love e");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("ystem. I love em");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("stem. I love emb");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("tem. I love embe");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("em. I love embed");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg("m. I love embedd");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg(". I love embedde");
+    delay(65535);
+    write(0x80, 0);//print position
+    print_msg(" I love embedded");
+    delay(65535);
 }

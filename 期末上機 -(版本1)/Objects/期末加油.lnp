@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\all.obj" 
+TO ".\Objects\期末加油" 
+PRINT(".\Listings\期末加油.m51") RAMSIZE(256) 

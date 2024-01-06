@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.0.0   ____                                                              12/17/2022 18:27:58 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE ____
+OBJECT MODULE PLACED IN .\Objects\计计.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 计计.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\计计
+                    -.lst) TABS(2) OBJECT(.\Objects\计计.obj)
+
+line level    source
+
+   1          #include <regx51.h>
+   2          void print_msg(char *);
+   3          void write(char, int);
+   4          void delay(unsigned int);
+   5          int a[3];
+   6          char b[3];
+   7          int i,j,k;
+   8          
+   9          void main()
+  10          {
+  11   1      write(0x38, 0);  //mode set first
+  12   1      write(0x0F, 0);  //control on/off
+  13   1      write(0x06, 0);  //mode
+  14   1      write(0x01, 0);  //clear
+  15   1      write(0x80, 0); //DD line1
+  16   1      
+  17   1      /*a[0]=1;
+  18   1      b[0]=a[0]+48;
+  19   1      print_msg(b);
+  20   1      while(1); */
+  21   1        for(k=0;k<10;k++)
+  22   1        {
+  23   2          for(j=0;j<10;j++)
+  24   2          {
+  25   3            for(i=0;i<10;i++)
+  26   3            {
+  27   4              a[2]=i;//int to char
+  28   4              b[2]=a[2]+48;
+  29   4              a[1]=j;
+  30   4              b[1]=a[1]+48;
+  31   4              a[0]=k;
+  32   4              b[0]=a[0]+48;
+  33   4              write(0x01, 0);  //clear
+  34   4              write(0x80, 0);
+  35   4              print_msg(b);
+  36   4              delay(20000);
+  37   4            }
+  38   3          }
+  39   2        }
+  40   1      }
+  41            
+  42          void write(char cmd,int rs_value)
+  43          {
+  44   1        P0=cmd;
+  45   1        P3_0=rs_value;
+  46   1        P3_1=1;
+  47   1        delay(100);
+  48   1        P3_1=0;
+  49   1      }
+  50          
+  51          void delay(unsigned int i)
+  52          {
+  53   1        while(i--);
+  54   1      }
+C51 COMPILER V9.60.0.0   ____                                                              12/17/2022 18:27:58 PAGE 2   
+
+  55          
+  56          void print_msg(char *msg)
+  57          {
+  58   1        for(;*msg!='\0';msg++)
+  59   1             write(*msg,1);
+  60   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    249    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

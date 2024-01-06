@@ -1,0 +1,181 @@
+C51 COMPILER V9.60.0.0   99PART1                                                           12/19/2022 17:21:17 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 99PART1
+OBJECT MODULE PLACED IN .\Objects\99part1.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 99part1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\9
+                    -9part1.lst) TABS(2) OBJECT(.\Objects\99part1.obj)
+
+line level    source
+
+   1          #include <regx51.h>
+   2          void print_msg(char *);
+   3          void write(char, int);
+   4          void delay(unsigned int);
+   5          int i;
+   6          
+   7          void main()
+   8          {
+   9   1      write(0x38, 0);  //mode set first
+  10   1      write(0x0E, 0);  //control on/off
+  11   1      write(0x06, 0);  //mode
+  12   1      write(0x01, 0);  //clear
+  13   1      write(0x80, 0); //DD line1
+  14   1      //print_msg("final exam");
+  15   1      
+  16   1      
+  17   1      
+  18   1      
+  19   1      while (1){
+  20   2        for(i=0;i<16;i++)
+  21   2        {
+  22   3        /*write(0x01, 0); //clear
+  23   3        write(0x80+i, 0);
+  24   3        print_msg("final exam");
+  25   3        //write(0x1C, 0);
+  26   3        delay(50000);
+  27   3          
+  28   3        if(i=8*/
+  29   3        if(i==0)
+  30   3        {
+  31   4          write(0x80, 0);
+  32   4          print_msg("final exam      ");
+  33   4          delay(25000);
+  34   4        }
+  35   3        else if(i==1)
+  36   3        {
+  37   4          write(0x80, 0);
+  38   4          print_msg(" final exam     ");
+  39   4          delay(25000);
+  40   4        }
+  41   3        else if(i==2)
+  42   3        {
+  43   4          write(0x80, 0);
+  44   4          print_msg("  final exam    ");
+  45   4          delay(25000);
+  46   4        }
+  47   3        else if(i==3)
+  48   3        {
+  49   4          write(0x80, 0);
+  50   4          print_msg("   final exam   ");
+  51   4          delay(25000);
+  52   4        }
+  53   3        else if(i==4)
+  54   3        {
+C51 COMPILER V9.60.0.0   99PART1                                                           12/19/2022 17:21:17 PAGE 2   
+
+  55   4          write(0x80, 0);
+  56   4          print_msg("    final exam  ");
+  57   4          delay(25000);
+  58   4        }
+  59   3        else if(i==5)
+  60   3        {
+  61   4          write(0x80, 0);
+  62   4          print_msg("     final exam ");
+  63   4          delay(25000);
+  64   4        }
+  65   3        else if(i==6)
+  66   3        {
+  67   4          write(0x80, 0);
+  68   4          print_msg("      final exam");
+  69   4          delay(25000);
+  70   4        }
+  71   3        else if(i==7)
+  72   3        {
+  73   4          write(0x80, 0);
+  74   4          print_msg("m      final exa");
+  75   4          delay(25000);
+  76   4        }
+  77   3        else if(i==8)
+  78   3        {
+  79   4          write(0x80, 0);
+  80   4          print_msg("am      final ex");
+  81   4          delay(25000);
+  82   4        }
+  83   3        else if(i==9)
+  84   3        {
+  85   4          write(0x80, 0);
+  86   4          print_msg("xam      final e");
+  87   4          delay(25000);
+  88   4        }
+  89   3        else if(i==10)
+  90   3        {
+  91   4          write(0x80, 0);
+  92   4          print_msg("exam      final ");
+  93   4          delay(25000);
+  94   4        }
+  95   3        else if(i==11)
+  96   3        {
+  97   4          write(0x80, 0);
+  98   4          print_msg(" exam      final");
+  99   4          delay(25000);
+ 100   4        }
+ 101   3        else if(i==12)
+ 102   3        {
+ 103   4          write(0x80, 0);
+ 104   4          print_msg("l exam      fina");
+ 105   4          delay(25000);
+ 106   4        }
+ 107   3        else if(i==13)
+ 108   3        {
+ 109   4          write(0x80, 0);
+ 110   4          print_msg("al exam      fin");
+ 111   4          delay(25000);
+ 112   4        }
+ 113   3        else if(i==14)
+ 114   3        {
+ 115   4          write(0x80, 0);
+ 116   4          print_msg("nal exam      fi");
+C51 COMPILER V9.60.0.0   99PART1                                                           12/19/2022 17:21:17 PAGE 3   
+
+ 117   4          delay(25000);
+ 118   4        }
+ 119   3        else if(i==15)
+ 120   3        {
+ 121   4          write(0x80, 0);
+ 122   4          print_msg("inal exam      f");
+ 123   4          delay(25000);
+ 124   4        }
+ 125   3        }
+ 126   2        
+ 127   2        write(0x80, 0);
+ 128   2        write(0xC0, 0);
+ 129   2        print_msg("0");
+ 130   2        delay(50000);
+ 131   2      }
+ 132   1      }
+ 133          
+ 134          void print_msg(char *msg)
+ 135          {
+ 136   1        for(;*msg!='\0';msg++)
+ 137   1             write(*msg,1);
+ 138   1      }
+ 139          
+ 140          void write(char cmd,int rs_value)
+ 141          {
+ 142   1        P0=cmd;
+ 143   1        P3_0=rs_value;
+ 144   1        P3_1=1;
+ 145   1        delay(100);
+ 146   1        P3_1=0;
+ 147   1      }
+ 148          
+ 149          void delay(unsigned int i)
+ 150          {
+ 151   1        while(i--);
+ 152   1      }
+ 153          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    487    ----
+   CONSTANT SIZE    =    274    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
